@@ -22,11 +22,18 @@ class Author
 
     /**
      * @ORM\Column(type="string", length=64)
+     * @Assert\NotBlank(message="Name can not be empty")
+     * @Assert\Length(
+     *      min = 3,
+     *      max = 64,
+     *      minMessage = "Name is too short. Must be at least {{ limit }} symbols length",
+     * )
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=64)
+     * @Assert\NotBlank(message="Surname can not be empty")
      */
     private $surname;
 

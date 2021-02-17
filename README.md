@@ -5,7 +5,7 @@
 
 ### Practical examination task
 
-Biblioteka is a small crud application which allows to manage Authors and their Books.
+Biblioteka is a small CRUD application which allows to manage Authors and their Books.
 
 ## Project features
 

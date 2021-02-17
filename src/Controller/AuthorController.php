@@ -30,7 +30,14 @@ class AuthorController extends AbstractController
      */
     public function create(Request $r): Response
     {
-        return $this->render('author/create.html.twig', []);
+        $author_name = $r->getSession()->getFlashBag()->get('author_name', []);
+        $author_surname = $r->getSession()->getFlashBag()->get('author_surname', []);
+        
+        return $this->render('author/create.html.twig', [
+            'errors' => $r->getSession()->getFlashBag()->get('errors', []),
+            'author_name' => $author_name[0] ?? '',
+            'author_surname' => $author_surname[0] ?? ''
+        ]);
     }
 
     /**
@@ -46,6 +53,18 @@ class AuthorController extends AbstractController
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($author);
         $entityManager->flush();
+
+        $errors = $validator->validate($author);
+
+        if (count($errors) > 0) {
+            foreach($errors as $error) {
+                $r->getSession()->getFlashBag()->add('errors', $error->getMessage());
+            }
+            $r->getSession()->getFlashBag()->add('author_name', $r->request->get('author_name'));
+            $r->getSession()->getFlashBag()->add('author_surname', $r->request->get('author_surname'));
+            return $this->redirectToRoute('author_create');
+        }
+        $r->getSession()->getFlashBag()->add('success', 'Author added successfully.');
 
         return $this->redirectToRoute('author_index');
     }

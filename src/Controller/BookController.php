@@ -90,6 +90,9 @@ class BookController extends AbstractController
     public function store(Request $r, ValidatorInterface $validator): Response
     {
         $author = $this->getDoctrine()->getRepository(Author::class)->find($r->request->get('book_author_id'));
+        if(null === $author) {
+            $r->getSession()->getFlashBag()->add('errors', 'Please choose Author.');
+        }
 
         $book = new Book();
         $book->
@@ -118,7 +121,7 @@ class BookController extends AbstractController
         $entityManager->persist($book);
         $entityManager->flush();
 
-        $r->getSession()->getFlashBag()->add('success', 'book added.');
+        $r->getSession()->getFlashBag()->add('success', 'Book added successfully.');
 
         return $this->redirectToRoute('book_index');
     }

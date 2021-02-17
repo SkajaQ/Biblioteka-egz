@@ -5,9 +5,9 @@
 {% block body %}
     <h1>Create new Book</h1>
     <form class="lolo" action="{{path('book_store')}}" method="POST">
-        <div class="line"><span class="table-title">Title:</span><input type="text" name="book_title"></div>
-        <div class="line"><span class="table-title">Pages:</span><input type="text" name="book_pages"></div>
-        <div class="line"><span class="table-title">ISBN:</span><input type="text" name="book_isbn"></div>
+        <div class="line"><span class="table-title">Title:</span><input type="text" name="book_title" value="{{book_title}}"></div>
+        <div class="line"><span class="table-title">Pages:</span><input type="text" name="book_pages" value="{{book_pages}}"></div>
+        <div class="line"><span class="table-title">ISBN:</span><input type="text" name="book_isbn" value="{{book_isbn}}"></div>
         <div class="line"><span class="table-title">Short description:</span><div style="margin-left: 70px;"><textarea name="book_short_description" id="summernote"></textarea></div></div>
         <div class="line">
             <select class="ml-1 lolo" name="book_author_id">
