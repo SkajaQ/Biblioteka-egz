@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Authors{% endblock %}
+
+{% block body %}
+
+<h1>All Authors</h1>
+    List:
+    <ul>
+    {% for author in authors %}
+        <li>
+        {{author.name}} {{author.surname}}
+        <a href="{{ path('author_edit', {id: author.id}) }}">EDIT</a>
+        <form action="{{ path('author_delete', {id: author.id}) }}" method="POST">
+        <button type="submit">DELETE</button>
+        </form>
+        </li>
+    {% endfor %}
+    </ul>
+{% endblock %}
