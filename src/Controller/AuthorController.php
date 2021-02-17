@@ -50,10 +50,6 @@ class AuthorController extends AbstractController
         setName($r->request->get('author_name'))->
         setSurname($r->request->get('author_surname'));
 
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($author);
-        $entityManager->flush();
-
         $errors = $validator->validate($author);
 
         if (count($errors) > 0) {
@@ -64,6 +60,11 @@ class AuthorController extends AbstractController
             $r->getSession()->getFlashBag()->add('author_surname', $r->request->get('author_surname'));
             return $this->redirectToRoute('author_create');
         }
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($author);
+        $entityManager->flush();
+
         $r->getSession()->getFlashBag()->add('success', 'Author added successfully.');
 
         return $this->redirectToRoute('author_index');
