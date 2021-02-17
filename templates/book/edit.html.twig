@@ -8,7 +8,7 @@
         Title:<input type="text" name="book_title" value="{{book.title}}">
         Pages:<input type="text" name="book_pages" value="{{book.pages}}">
         ISBN:<input type="text" name="book_isbn" value="{{book.isbn}}">
-        Short description:<textarea name="book_short_description" id="summernote">{{book.short_description}}</textarea>  
+        Short description:<textarea name="book_short_description" id="summernote">{{book.shortDescription}}</textarea>  
         <select name="books_author">
         {% for author in authors %}
         <option value="{{author.id}}" {% if author.id == book.authorId %} selected {% endif %}>

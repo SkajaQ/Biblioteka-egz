@@ -35,12 +35,17 @@ class Book
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $short_description;
+    private $shortDescription;
 
     /**
      * @ORM\Column(type="integer")
      */
     private $author_id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Author::class, inversedBy="books")
+     */
+    private $author;
 
     public function getId(): ?int
     {
@@ -85,12 +90,12 @@ class Book
 
     public function getShortDescription(): ?string
     {
-        return $this->short_description;
+        return $this->shortDescription;
     }
 
-    public function setShortDescription(string $short_description): self
+    public function setShortDescription(string $shortDescription): self
     {
-        $this->short_description = $short_description;
+        $this->shortDescription = $shortDescription;
 
         return $this;
     }
@@ -103,6 +108,18 @@ class Book
     public function setAuthorId(int $author_id): self
     {
         $this->author_id = $author_id;
+
+        return $this;
+    }
+
+    public function getAuthor(): ?Author
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?Author $author): self
+    {
+        $this->author = $author;
 
         return $this;
     }
