@@ -17,7 +17,7 @@ class BookController extends AbstractController
      */
     public function index(Request $r): Response
     {
-        // $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         
         $filterByAuthorId = $r->query->get('author_id');
 
@@ -47,7 +47,7 @@ class BookController extends AbstractController
         }
         else {
             if ($filterBy === []) {
-                $books = $books->findAll();
+                $books = $books->findBy($filterBy, ['title'=>'asc']);
             } else {
                 $books = $books->findBy($filterBy);
             }
@@ -66,9 +66,7 @@ class BookController extends AbstractController
      * @Route("/book/create", name="book_create", methods={"GET"})
      */
     public function create(Request $r): Response
-    {
-        // $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        
+    {        
         $book_title = $r->getSession()->getFlashBag()->get('book_title', []);
         $book_pages = $r->getSession()->getFlashBag()->get('book_pages', []);
         $book_isbn = $r->getSession()->getFlashBag()->get('book_isbn', []);

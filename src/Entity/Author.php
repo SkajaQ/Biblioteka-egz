@@ -98,4 +98,9 @@ class Author
 
         return $this;
     }
+
+    public function booksCount() {
+        return count($this->books);
+    }
+
 }

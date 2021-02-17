@@ -17,14 +17,14 @@
         {% include 'msg/validation.html.twig' %}
         {% endif %}
         {% if success is defined and success|length > 0 %}
-        {# {% include 'msg/success.html.twig' %} #}
+        {% include 'msg/success.html.twig' %}
         {% endif %}
         <div class="block">
             <div class="container-block"> 
                 <div class="menu-mar">
                     <span class="name2">Biblioteka</span>
                 </div>
-                {# <div class="menu-mar">{% include 'menu.html.twig' %}</div> #}
+                <div class="menu-mar">{% include 'menu.html.twig' %}</div>
                 
                 <div class="container1">
                     {% block body %}{% endblock %}

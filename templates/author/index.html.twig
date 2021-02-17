@@ -5,16 +5,43 @@
 {% block body %}
 
 <h1>All Authors</h1>
-    List:
-    <ul>
-    {% for author in authors %}
-        <li>
-        {{author.name}} {{author.surname}}
-        <a href="{{ path('author_edit', {id: author.id}) }}">EDIT</a>
-        <form action="{{ path('author_delete', {id: author.id}) }}" method="POST">
-        <button type="submit">DELETE</button>
-        </form>
-        </li>
-    {% endfor %}
-    </ul>
+
+    <div class="container cont-names"> 
+        <div class="row names-row">
+            <div class="col-3" style="margin-left: 25px;">
+            Author
+            </div>
+            <div class="col-2">
+            Books count
+            </div>
+            
+            <div class="col-1">
+            
+            </div>
+            <div class="col-1">
+            
+            </div>
+        </div>
+        <div class="cont-table">
+        {% for author in authors %}
+        <div class="row result-row">
+            <div class="col-3">
+                {{author.name}} {{author.surname}}
+            </div>
+            <div class="col-2 text-center">
+                {{author.booksCount}}
+            </div>
+            <div class="col-1">
+                <a href="{{ path('author_edit', {id: author.id}) }}">Edit</a>
+            </div>
+            <div class="col-1">
+                <form action="{{ path('author_delete', {id: author.id}) }}" method="POST">
+                <button type="submit" class="btn btn-warning">Delete</button>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+        </div>
+    </div>
+
 {% endblock %}
