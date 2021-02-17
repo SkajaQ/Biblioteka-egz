@@ -23,6 +23,12 @@ class Author
     /**
      * @ORM\Column(type="string", length=64)
      * @Assert\NotBlank(message="Name can not be empty")
+     * @Assert\Regex(
+     *     pattern = "/^[a-z]+$/i",
+     *     htmlPattern = "^[a-zA-Z]+$"
+     *     match=true,
+     *     message="Your name should contain only letters"
+     * )
      * @Assert\Length(
      *      min = 3,
      *      max = 64,
@@ -34,6 +40,12 @@ class Author
     /**
      * @ORM\Column(type="string", length=64)
      * @Assert\NotBlank(message="Surname can not be empty")
+     * @Assert\Regex(
+     *     pattern = "/^[a-z]+$/i",
+     *     htmlPattern = "^[a-zA-Z]+$"
+     *     match=true,
+     *     message="Your surname should contain only letters"
+     * )
      */
     private $surname;
 
